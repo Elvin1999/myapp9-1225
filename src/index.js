@@ -1,14 +1,23 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import { Profiler,React,StrictMode } from "react"; 
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+function onRender(id, phase, actualDuration, baseDuration, startTime, commitTime){
+  console.log(id);
+  console.log(phase);
+  console.log(actualDuration);
+  console.log(baseDuration);
+  console.log(startTime);
+  console.log(commitTime);
+}
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+    <Profiler id="App" onRender={onRender}>
+      <App />
+    </Profiler>
 );
 
 // If you want to start measuring performance in your app, pass a function
